@@ -22,10 +22,44 @@ var codigo = "";
 var textarea = document.getElementById("input");
 function convert() {
   mdown = document.getElementById("input").value;
-  const input = document.getElementById("input").value.trim();
+  let input = document.getElementById("input").value.trim();
   const output = document.getElementById("output");
   const options = { htmlTags: true };
   let html = ""; // Inicializa la variable HTML
+
+  // Procesamiento de Navegacion():
+  if (input.includes("Navegacion():")) {
+    let navStartIndex = input.indexOf("Navegacion():") + "Navegacion():".length;
+    let navEndIndex = input.indexOf("----", navStartIndex);
+    let navigationContent = input
+      .substring(navStartIndex, navEndIndex)
+      .trim()
+      .split("\n");
+    let navbarHtml = `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+  <a class="navbar-brand" href="#"><img src="${navigationContent[0]}" alt="logo" height="30"></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">`;
+
+    navigationContent.slice(1).forEach(function (item, index) {
+      navbarHtml += `
+      <li class="nav-item">
+        <a class="nav-link" href="#">${item}</a>
+      </li>`;
+    });
+
+    navbarHtml += `
+    </ul>
+  </div>
+</div>
+</nav>`;
+
+    html = navbarHtml + html;
+    input = input.substring(navEndIndex); // Actualiza el input eliminando la parte procesada de Navegacion
+  }
 
   // Divide el input en secciones basadas en "Acordeon():"
   var sections = input.split(/(?=Acordeon\(\):)/g);
