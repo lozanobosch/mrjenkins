@@ -1,0 +1,139 @@
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+p {
+  font-weight: 300;
+  color: #4b4b4b;
+  font-size: 14px;
+}
+
+ol {
+  list-style-type: upper-alpha;
+}
+
+/* Additional styles for other elements can go here */
+body {
+  background-color: #edede9;
+  font-family: "Nunito", sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+#input,
+#output {
+  width: 48%;
+  margin: 1%;
+  padding: 20px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  height: 90vh; /* Adjust height as per your preference */
+  overflow: auto;
+}
+#input {
+  font-family: "Nunito", monospace;
+  font-size: 16px;
+}
+#output {
+  font-size: 16px;
+  background-color: white;
+}
+
+h1 {
+  font-weight: 300;
+  color: #4b4b4b;
+  font-size: 34px;
+}
+h2 {
+  font-weight: 300;
+  color: #4b4b4b;
+  font-size: 26px;
+}
+
+h6 {
+  font-weight: 300;
+  color: #4b4b4b;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 0px;
+  margin: 0px;
+}
+
+mark {
+  background-color: #cae9ff; /* Change this to your preferred highlight color */
+  padding: 3px;
+}
+
+img {
+  border-radius: 50%; /* Make the image a circle */
+  width: 200px; /* Set a fixed width */
+  height: 200px; /* Set a fixed height */
+}
+/* Style for all tables */
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse; /* Added for better border handling */
+}
+
+/* Default Style for 6 columns */
+table th,
+table td {
+  display: table-cell;
+}
+
+.max-width-960 {
+  max-width: 960px;
+  margin: auto;
+}
+
+/* Medium screens: Display 4 columns */
+@media screen and (max-width: 1024px) {
+  table th:nth-child(n + 5),
+  table td:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+/* Small screens: Display 2 columns */
+@media screen and (max-width: 768px) {
+  table th:nth-child(n + 3),
+  table td:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* Extra Small screens: Display 1 column */
+@media screen and (max-width: 480px) {
+  table th:nth-child(n + 2),
+  table td:nth-child(n + 2) {
+    display: none;
+  }
+}
+
+/* Style for table headers and cells */
+th,
+td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Header row style */
+thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Apply alternate background color for striped effect on odd rows */
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Style for table rows */
+tbody tr:hover {
+  color: #212529;
+  background-color: rgba(0, 0, 0, 0.075);
+}
