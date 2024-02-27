@@ -143,40 +143,7 @@ function navbar(text) {
     return navbarHTML;
 }
 
-function divider(text) {
-    blocks = text.split('\n').filter(block => block !== '');
-    input = input.replace("Divider():\n" + text, '');
-    input = input.replace("----", '');
 
-    let dividerHTML = '';
-
-    for (let i = 0; i < blocks.length; i++, id++) {
-        const block = blocks[i];
-
-        if (/--(\w+)(?:\/(\w+))?/.test(block)) {
-            let matches = block.match(/--(\w+)(?:\/(\w+))?/);
-            let color = matches[1];
-            let icon = matches[2] || null;
-            
-            if (icon !== null) {
-                dividerHTML += `
-                    <div class="divider bg-${color} mt-5 mb-5">
-                        <div class="icon-box bg-${color}">
-                            <ion-icon name="${icon}"></ion-icon>
-                        </div>
-                    </div>
-                `;
-            } else {
-                dividerHTML += `
-                    <div class="divider bg-${color} mt-2 mb-3"></div>
-                `;
-            }
-        }
-       
-    }
-
-    return dividerHTML;
-}
 
 function formatText(text) {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
