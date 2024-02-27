@@ -4,11 +4,10 @@ let id = 0;
 function selectFunction(text) {
 
     const functions = {
-        'Divider': divider,
         'Navbar': navbar,
-        'Acordeon': acordeon
+        'Acordeon': acordeon,
+        'Toggle': toggle
     };
-
     container = document.createElement('div');
 
     text.forEach(child => {
@@ -117,8 +116,8 @@ function navbar(text) {
             let texto = matches[1];
             let url = matches[2];
             ul = true;
-
-            texto = formatText(texto);
+            console.log(url);
+            console.log(url);
 
             // Generar el código HTML del bloque de acordeón
             navbarDiv += `
@@ -144,6 +143,31 @@ function navbar(text) {
 }
 
 
+function toggle(text) {
+    let toggleHTML = '';
+
+    // Divide el texto en bloques para crear múltiples toggles si es necesario
+    const blocks = text.split('\n').filter(block => block !== '');
+
+    blocks.forEach(block => {
+        // Incrementa el ID para asegurar elementos únicos
+        id++;
+
+        // Extrae el título del bloque y procesa el markdown en el título
+        const titleMarkdown = block.trim();
+        const titleHTML = window.markdownToHTML ? window.markdownToHTML(titleMarkdown) : titleMarkdown;
+
+        // Genera el HTML para el interruptor toggle de Bootstrap
+        toggleHTML += `
+            <div class="toggle-item form-check form-switch" style="margin-top: 20px;">
+                <input class="form-check-input" type="checkbox" id="toggle-${id}">
+                <label class="form-check-label" for="toggle-${id}">${titleHTML}</label>
+            </div>
+        `;
+    });
+
+    return toggleHTML;
+}
 
 function formatText(text) {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')

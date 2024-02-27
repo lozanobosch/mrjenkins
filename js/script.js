@@ -25,16 +25,18 @@ function convert() {
     mdown = document.getElementById("input").value;
     input = document.getElementById("input").value.trim();
     const output = document.getElementById('output');
-    const options = { htmlTags: true };
 
-    selectFunction(extractBlocks(input));
+    // Limpia el contenedor global antes de comenzar a agregar contenido nuevo
+    container.innerHTML = '';
 
-    const html = window.markdownToHTML(input, options);
-    codigo = container.innerHTML;
-    codigo += html;
-    output.innerHTML = codigo;
+    const blocks = extractBlocks(input);
+    selectFunction(blocks);
 
+    // Ahora 'container' tiene el contenido HTML generado solo por las funciones específicas
+    // No necesitas agregar todo el Markdown procesado, solo el contenido relevante
+    output.innerHTML = container.innerHTML;
 }
+
 
 function extractBlocks(text) {
     // Split the input text by the delimiter line
