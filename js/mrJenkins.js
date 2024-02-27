@@ -6,7 +6,9 @@ function selectFunction(text) {
     const functions = {
         'Divider': divider,
         'Navbar': navbar,
-        'Acordeon': acordeon
+        'Acordeon': acordeon,
+        'Paginacion': paginacion // Añadido aquí
+
     };
 
     container = document.createElement('div');
@@ -142,6 +144,28 @@ function navbar(text) {
 
     return navbarHTML;
 }
+
+function paginacion(text) {
+    // Asegurarse de que text contiene un número válido y usar 5 como valor predeterminado
+    let totalPaginas = parseInt(text);
+    if (isNaN(totalPaginas) || totalPaginas <= 0) {
+        totalPaginas = 5;
+    }
+
+    let paginacionHTML = '<nav aria-label="Page navigation example"><ul class="pagination">';
+    paginacionHTML += '<li class="page-item"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>';
+
+    for (let i = 1; i <= totalPaginas; i++) {
+        paginacionHTML += `<li class="page-item ${i === 1 ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
+    }
+
+    paginacionHTML += '<li class="page-item"><a class="page-link" href="#">Siguiente</a></li>';
+    paginacionHTML += '</ul></nav>';
+
+    return paginacionHTML;
+}
+
+
 
 function divider(text) {
     blocks = text.split('\n').filter(block => block !== '');
