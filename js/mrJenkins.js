@@ -7,7 +7,15 @@ function selectFunction(text) {
         'Navbar': navbar,
         'Acordeon': acordeon,
         'Toggle': toggle,
-        'DefaultAlert': createDefaultAlert
+        'ActionSheetDefault': actionSheetDefault,
+        'PrimaryAlert': primaryAlert,
+        'SecondaryAlert': secondaryAlert,
+        'SuccesAlert': successAlert,
+        'DangerAlert': dangerAlert,
+        'WarningAlert': warningAlert,
+        'InfoAlert': infoAlert,
+        'LightAlert': lightAlert,
+        'DarkAlert': darkAlert,
     };
     container = document.createElement('div');
 
@@ -20,6 +28,7 @@ function selectFunction(text) {
     });
 }
 
+/*Acordeon*/
 function acordeon(text) {
     blocks = text.split('\n').filter(block => block !== '');
     input = input.replace("Acordeon():\n" + text, '');
@@ -75,7 +84,9 @@ function acordeon(text) {
 
     return acordeonHTML;
 }
+/**/
 
+/*Navbar*/
 function navbar(text) {
     blocks = text.split('\n').filter(block => block !== '');
     input = input.replace("Navbar():\n" + text, '');
@@ -142,8 +153,9 @@ function navbar(text) {
 
     return navbarHTML;
 }
+/**/
 
-
+/*Toggle*/
 function toggle(text) {
     let toggleHTML = '';
 
@@ -169,13 +181,82 @@ function toggle(text) {
 
     return toggleHTML;
 }
+/**/
 
-function createDefaultAlert(markdown) {
+/*Default ActionSheet*/
+function actionSheetDefault(text) {
+    // Crea el contenedor de la hoja de acción por defecto
+    const actionSheetContainer = document.createElement('div');
+    actionSheetContainer.className = 'section full mt-2';
+
+    // Crea el título de la sección
+    const sectionTitle = document.createElement('div');
+
+    // Crea el bloque principal que contendrá el texto
+    const wideBlock = document.createElement('div');
+    wideBlock.className = 'wide-block pt-2 pb-2';
+
+    // Convierte el Markdown a HTML y lo agrega al bloque principal
+    const htmlContent = markdownToHTML(text); // Asume que existe una función que convierte Markdown a HTML
+    wideBlock.innerHTML = htmlContent;
+
+    // Añade los botones que activarán la hoja de acción
+    const buttonContainer = document.createElement('p');
+    buttonContainer.innerHTML = `
+        <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#actionSheetDefault">Default</button>
+        <div class="offcanvas offcanvas-bottom action-sheet" tabindex="-1" id="actionSheetDefault">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Action Sheet</h5>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="action-button-list">
+                    <li>
+                        <a href="#" class="btn btn-list text-primary" data-bs-dismiss="offcanvas">
+                            <span>Open</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-list" data-bs-dismiss="offcanvas">
+                            <span>Delete</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-list" data-bs-dismiss="offcanvas">
+                            <span>Copy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-list" data-bs-dismiss="offcanvas">
+                            <span>Share</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-list text-danger" data-bs-dismiss="offcanvas">
+                            <span>Close</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    `;
+
+    // Agrega el título y los bloques al contenedor de la hoja de acción
+    actionSheetContainer.appendChild(sectionTitle);
+    actionSheetContainer.appendChild(wideBlock);
+    actionSheetContainer.appendChild(buttonContainer);
+
+    // Retorna el HTML de la hoja de acción
+    return actionSheetContainer.outerHTML;
+}
+/**/
+
+/*ALerts*/
+function primaryAlert(markdown) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-primary';
     alertElement.setAttribute('role', 'alert');
-    
+
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
     const htmlContent = markdownToHTML(markdown);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
@@ -183,11 +264,103 @@ function createDefaultAlert(markdown) {
     return alertElement.outerHTML;
 }
 
+function secondaryAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-secondary';
+    alertElement.setAttribute('role', 'alert2');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function successAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-success';
+    alertElement.setAttribute('role', 'alert3');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function dangerAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-danger';
+    alertElement.setAttribute('role', 'alert');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function warningAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-warning';
+    alertElement.setAttribute('role', 'alert');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function infoAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-info';
+    alertElement.setAttribute('role', 'alert');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function lightAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-light';
+    alertElement.setAttribute('role', 'alert');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+function darkAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-dark';
+    alertElement.setAttribute('role', 'alert');
+
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+/**/
+
 
 function formatText(text) {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
         .replace(/==(.*?)==/g, '<mark>$1</mark>')
         .replace(/_(.*?)_/g, '<i>$1</i>')
         .trim();
-        
+
 }
