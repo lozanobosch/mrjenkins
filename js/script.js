@@ -16,6 +16,7 @@ function hideDetails() {
     });
 }
 
+
 var mdown = "";
 var codigo = "";
 var textarea = document.getElementById('input');

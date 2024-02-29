@@ -6,7 +6,8 @@ function selectFunction(text) {
     const functions = {
         'Navbar': navbar,
         'Acordeon': acordeon,
-        'Toggle': toggle
+        'Toggle': toggle,
+        'DefaultAlert': createDefaultAlert
     };
     container = document.createElement('div');
 
@@ -169,9 +170,24 @@ function toggle(text) {
     return toggleHTML;
 }
 
+function createDefaultAlert(markdown) {
+    // Crea el elemento de la alerta
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-primary';
+    alertElement.setAttribute('role', 'alert');
+    
+    // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
+    const htmlContent = markdownToHTML(markdown);
+    alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
+
+    return alertElement.outerHTML;
+}
+
+
 function formatText(text) {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
         .replace(/==(.*?)==/g, '<mark>$1</mark>')
         .replace(/_(.*?)_/g, '<i>$1</i>')
         .trim();
+        
 }

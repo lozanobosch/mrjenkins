@@ -24,12 +24,7 @@ Toggle():
 ==Interruptor 2==
 Interruptor 3
 ----
-ActionSheet():
-Title
-Open|open-action
-Delete|delete-action
-Copy|copy-action
-Share|share-action
-Close|close-action
+DefaultAlert():
+**Alerta por defecto:** Un simple mensaje de alerta que se muestra en la página.
 
 ```
