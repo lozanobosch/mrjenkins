@@ -16,6 +16,7 @@ function selectFunction(text) {
         'InfoAlert': infoAlert,
         'LightAlert': lightAlert,
         'DarkAlert': darkAlert,
+        'BottomMenu': bottomMenu
     };
     container = document.createElement('div');
 
@@ -251,109 +252,154 @@ function actionSheetDefault(text) {
 /**/
 
 /*ALerts*/
-function primaryAlert(markdown) {
+function primaryAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-primary';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function secondaryAlert(markdown) {
+function secondaryAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-secondary';
     alertElement.setAttribute('role', 'alert2');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function successAlert(markdown) {
+function successAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-success';
     alertElement.setAttribute('role', 'alert3');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function dangerAlert(markdown) {
+function dangerAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-danger';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function warningAlert(markdown) {
+function warningAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-warning';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function infoAlert(markdown) {
+function infoAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-info';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function lightAlert(markdown) {
+function lightAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-light';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
 
-function darkAlert(markdown) {
+function darkAlert(text) {
     // Crea el elemento de la alerta
     const alertElement = document.createElement('div');
     alertElement.className = 'alert alert-dark';
     alertElement.setAttribute('role', 'alert');
 
     // Convierte Markdown a HTML (usando una función hipotética markdownToHTML)
-    const htmlContent = markdownToHTML(markdown);
+    const htmlContent = markdownToHTML(text);
     alertElement.innerHTML = htmlContent; // Asigna el HTML convertido como contenido
 
     return alertElement.outerHTML;
 }
+/**/
+
+/*ButtonMenu*/
+function bottomMenu(text) {
+    let menuHTML = `
+    <div class="section full mt-2">
+            <div class="appBottomMenu">
+                <a href="#" class="item">
+                    <div class="col">
+                        <ion-icon name="file-tray-full-outline"></ion-icon>
+                        <strong>Today</strong>
+                    </div>
+                </a>
+                <a href="#" class="item active">
+                    <div class="col">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <strong>Calendar</strong>
+                    </div>
+                </a>
+                <a href="#" class="item">
+                    <div class="col">
+                        <ion-icon name="archive-outline"></ion-icon>
+                        <strong>Inbox</strong>
+                    </div>
+                </a>
+                <a href="#" class="item">
+                    <div class="col">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                        <strong>Docs</strong>
+                    </div>
+                </a>
+                <a href="#" class="item">
+                    <div class="col">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <strong>Profile</strong>
+                    </div>
+                </a>
+            </div>
+            <!-- * App Bottom Menu -->
+        </div>
+        `
+    return menuHTML;
+}
+
+
 /**/
 
 
