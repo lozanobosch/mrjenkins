@@ -1,26 +1,51 @@
 var container = "";
 let id = 0;
 
-function selectFunction(text) {
-
+function selectFunction(blocks) {
     const functions = {
         'Divider': divider,
         'Navbar': navbar,
         'Acordeon': acordeon,
-        'Paginacion': paginacion // Añadido aquí
-
+        'Paginacion': paginacion
     };
 
     container = document.createElement('div');
 
-    text.forEach(child => {
-        Object.keys(functions).forEach(functionName => {
-            if (child.nombre === functionName) {
-                container.innerHTML += functions[functionName](child.contenido);
-            }
-        });
+    blocks.forEach(block => {
+        let parts = block.contenido.split(',');
+        let pageNumber = parts[0];
+        let style = parts[1]; // Aquí esperas 'secondary', 'rounded', 'square', etc.
+        
+        let styles = {};
+
+        // Aplicar las clases correspondientes según el estilo
+        if (style === 'secondary') {
+            styles.ulClass = 'pagination pagination-secondary';
+        } else if (style === 'rounded') {
+            styles.ulClass = 'pagination pagination-rounded';
+        } else if (style === 'square') {
+            styles.ulClass = 'pagination pagination-square';
+        } else if (style && style.startsWith('bg-')) {
+            // Aquí asumimos que todos los botones deben tener el mismo color
+            styles.aClass = `page-link ${style}`;
+        }
+
+        // Llama a la función de paginación con los estilos
+        if (block.nombre === 'Paginacion') {
+            container.innerHTML += paginacion(pageNumber, styles);
+        } else if (functions[block.nombre]) {
+            container.innerHTML += functions[block.nombre](block.contenido);
+        }
+
+        // Limpiar el input
+        input = input.replace(`${block.nombre}():\n${block.contenido}`, '').trim();
     });
+
+    return container.innerHTML;
 }
+
+
+
 
 function acordeon(text) {
     blocks = text.split('\n').filter(block => block !== '');
@@ -145,28 +170,6 @@ function navbar(text) {
     return navbarHTML;
 }
 
-function paginacion(text) {
-    // Asegurarse de que text contiene un número válido y usar 5 como valor predeterminado
-    let totalPaginas = parseInt(text);
-    if (isNaN(totalPaginas) || totalPaginas <= 0) {
-        totalPaginas = 5;
-    }
-
-    let paginacionHTML = '<nav aria-label="Page navigation example"><ul class="pagination">';
-    paginacionHTML += '<li class="page-item"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>';
-
-    for (let i = 1; i <= totalPaginas; i++) {
-        paginacionHTML += `<li class="page-item ${i === 1 ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
-    }
-
-    paginacionHTML += '<li class="page-item"><a class="page-link" href="#">Siguiente</a></li>';
-    paginacionHTML += '</ul></nav>';
-
-    return paginacionHTML;
-}
-
-
-
 function divider(text) {
     blocks = text.split('\n').filter(block => block !== '');
     input = input.replace("Divider():\n" + text, '');
@@ -208,3 +211,44 @@ function formatText(text) {
         .replace(/_(.*?)_/g, '<i>$1</i>')
         .trim();
 }
+
+function paginacion(pageNumber, styles = {}) {
+    let totalPages = parseInt(pageNumber);
+    if (isNaN(totalPages) || totalPages <= 0) {
+        totalPages = 5; // default value if text is not a number
+    }
+
+    // Default and passed style classes
+    let finalStyles = {
+        ulClass: styles.ulClass || 'pagination',
+        liClass: styles.liClass || 'page-item',
+        aClass: styles.aClass || 'page-link',
+        activeClass: styles.activeClass || 'active',
+        colorClasses: styles.colorClasses || [] // color styles will be applied here
+    };
+
+    let paginationHTML = `<nav aria-label="Page navigation"><ul class="${finalStyles.ulClass}">`;
+
+    // Previous button
+    paginationHTML += `<li class="${finalStyles.liClass}"><a class="${finalStyles.aClass}" href="#" tabindex="-1">Previous</a></li>`;
+
+    // Page number buttons
+    for (let i = 1; i <= totalPages; i++) {
+        let aClass = finalStyles.aClass;
+        // Apply specific color class if it's defined for this index
+        if (finalStyles.colorClasses[i - 1]) {
+            aClass += ` ${finalStyles.colorClasses[i - 1]}`;
+        }
+        let activeClass = i === 1 ? finalStyles.activeClass : '';
+        paginationHTML += `<li class="${finalStyles.liClass} ${activeClass}"><a class="${aClass}" href="#">${i}</a></li>`;
+    }
+
+    // Next button
+    paginationHTML += `<li class="${finalStyles.liClass}"><a class="${finalStyles.aClass}" href="#">Next</a></li>`;
+
+    paginationHTML += '</ul></nav>';
+
+    return paginationHTML;
+}
+
+

@@ -3,6 +3,7 @@ Mr jenkins
 Input de prueba:
 
 ```
+----
 Navbar():
 ![ABC](images/mrJenkinsLogo.png)
 [Link A](https://github.com/lozanobosch/mrjenkins)
@@ -34,4 +35,28 @@ El objetivo de los **componentes** es construir un generador que use **markdown*
 
 ::Qué librerías usa?
 Usaremos ==B
+----
+Paginacion():
+10
+----
+Paginacion():
+5,secondary
+----
+Paginacion():
+10,rounded
+----
+Paginacion():
+10,bg-primary
+----
+Paginacion():
+10,bg-danger
+----
+Paginacion():
+10,bg-warning
+----
+Paginacion():
+10,bg-success
+----
+Paginacion():
+10,square
 ```
