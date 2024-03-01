@@ -85,7 +85,7 @@ mark {
   padding: 3px;
 }
 
-img {
+.navbar-brand img {
   border-radius: 50%; /* Make the image a circle */
   width: 200px; /* Set a fixed width */
   height: 200px; /* Set a fixed height */
@@ -401,6 +401,48 @@ alert-primary .alert-title {
   background: transparent;
   color: #333;
   border: 1px solid #333;
+}
+
+.adbox {
+  text-align: center;
+}
+
+.adbox.fixed {
+  position: fixed;
+  bottom: 56px;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.adbox.fixed .closebutton {
+  width: 24px;
+  height: 24px;
+  font-size: 22px;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.adbox.hide.fixed {
+  bottom: -100%;
+}
+
+.adbox-300-50 img {
+  width: 300px;
+  height: 50px;
+}
+
+.adbox-300-250 img {
+  width: 300px;
+  height: 250px;
 }
 
 /* Medium screens: Display 4 columns */

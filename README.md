@@ -27,6 +27,12 @@ Interruptor 3
 ActionSheetDefault():
 **Titulo de la sección**
 ----
+AdBox300_50():
+(https://es.digitaltrends.com/wp-content/uploads/2023/12/google-chrome.jpeg?fit=720%2C480&p=1)
+----
+AdBox300_250():
+(images/mrJenkinsLogo.png)
+----
 PrimaryAlert():
 **Alerta por defecto:** Un simple mensaje de alerta que se muestra en la página.
 ----

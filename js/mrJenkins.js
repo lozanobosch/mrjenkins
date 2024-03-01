@@ -8,6 +8,8 @@ function selectFunction(text) {
         'Acordeon': acordeon,
         'Toggle': toggle,
         'ActionSheetDefault': actionSheetDefault,
+        'AdBox300_50': adBox300_50,
+        'AdBox300_250': adBox300_250,
         'PrimaryAlert': primaryAlert,
         'SecondaryAlert': secondaryAlert,
         'SuccesAlert': successAlert,
@@ -204,7 +206,7 @@ function actionSheetDefault(text) {
     // Añade los botones que activarán la hoja de acción
     const buttonContainer = document.createElement('p');
     buttonContainer.innerHTML = `
-        <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#actionSheetDefault">Default</button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#actionSheetDefault">${htmlContent}</button>
         <div class="offcanvas offcanvas-bottom action-sheet" tabindex="-1" id="actionSheetDefault">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title">Action Sheet</h5>
@@ -248,6 +250,62 @@ function actionSheetDefault(text) {
 
     // Retorna el HTML de la hoja de acción
     return actionSheetContainer.outerHTML;
+}
+/**/
+
+/*AdBox300*50*/
+function adBox300_50(markdownText) {
+    const blocks = markdownText.split('\n').filter(block => block !== '');
+    let adBoxHTML = '';
+
+    blocks.forEach(block => {
+        if (/\((.*?)\)/.test(block)) {
+            const matches = block.match(/\((.*?)\)/);
+            const adImgSrc = matches[1];
+
+            // Crear los elementos del DOM para el anuncio
+            adBoxHTML += `
+            <div class="section inset mt-2">
+            <div class="wide-block pt-2 pb-2">
+                <div class="adbox adbox-300-50">
+                    <img src="${adImgSrc}" alt="Imagen">
+                </div>
+
+            </div>
+        </div>
+            `;
+        }
+    });
+
+    return adBoxHTML;
+}
+/**/
+
+/*AdBox300*250*/
+function adBox300_250(markdownText) {
+    const blocks = markdownText.split('\n').filter(block => block !== '');
+    let adBoxHTML = '';
+
+    blocks.forEach(block => {
+        if (/\((.*?)\)/.test(block)) {
+            const matches = block.match(/\((.*?)\)/);
+            const adImgSrc = matches[1];
+
+            // Crear los elementos del DOM para el anuncio
+            adBoxHTML += `
+            <div class="section inset mt-2">
+            <div class="wide-block pt-2 pb-2">
+                <div class="adbox adbox-300-250">
+                    <img src="${adImgSrc}" alt="Imagen">
+                </div>
+
+            </div>
+        </div>
+            `;
+        }
+    });
+
+    return adBoxHTML;
 }
 /**/
 
@@ -383,7 +441,7 @@ function bottomMenu(text) {
 }
 /**/
 
-
+/*Format text*/
 function formatText(text) {
     return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
         .replace(/==(.*?)==/g, '<mark>$1</mark>')
@@ -391,3 +449,4 @@ function formatText(text) {
         .trim();
 
 }
+/**/
