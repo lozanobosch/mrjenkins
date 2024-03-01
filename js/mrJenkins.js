@@ -5,8 +5,11 @@ function selectFunction(text) {
 
     const functions = {
         'Divider': divider,
+        'Dropdown': dropdown,
         'Navbar': navbar,
-        'Acordeon': acordeon
+        'Acordeon': acordeon,
+        'FabButton': fabButton,
+        'Form': formGenerator
     };
 
     container = document.createElement('div');
@@ -154,10 +157,10 @@ function divider(text) {
         const block = blocks[i];
 
         if (/--(\w+)(?:\/(\w+))?/.test(block)) {
-            let matches = block.match(/--(\w+)(?:\/(\w+))?/);
+            let matches = block.match(/--(\w+)(?:\/([\w-]+))?/);
             let color = matches[1];
             let icon = matches[2] || null;
-            
+
             if (icon !== null) {
                 dividerHTML += `
                     <div class="divider bg-${color} mt-5 mb-5">
@@ -172,10 +175,162 @@ function divider(text) {
                 `;
             }
         }
-       
+
     }
 
     return dividerHTML;
+}
+
+function dropdown(text) {
+    blocks = text.split('\n').filter(block => block !== '');
+    input = input.replace("Dropdown():\n" + text, '');
+    input = input.replace("----", '');
+
+    let dropdownHTML = '';
+
+    dropdownHTML += `
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"></button>
+            <div class="dropdown-menu">
+    `;
+
+    for (let i = 0; i < blocks.length; i++, id++) {
+        const block = blocks[i];
+
+        if (/^::/.test(block)) {
+            let buttonName = block.replace(/^::/, '');
+            dropdownHTML = dropdownHTML.replace(/<button[^>]*>(.*?)<\/button>/, `<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">${buttonName}</button>`);
+
+        } else if (/\[(.*?)\]\((.*?)\)/.test(block)) {
+            let matches = block.match(/\[(.*?)\]\((.*?)\)/);
+            let texto = matches[1];
+            let url = matches[2];
+
+            texto = formatText(texto);
+
+            dropdownHTML += `
+                <a class="dropdown-item" href="${url}">${texto}</a>
+            `;
+
+        } else if (/>/.test(block)) {
+            dropdownHTML += `
+                <div class="dropdown-divider"></div>
+            `;
+
+        } else if (/^#/.test(block)) {
+            let headerName = block.replace(/^#/, '');
+            dropdownHTML += `
+                <h6 class="dropdown-header">${headerName}</h6>
+            `;
+
+        }
+
+    }
+
+    return dropdownHTML;
+}
+
+function fabButton(text) {
+    blocks = text.split('\n').filter(block => block !== '');
+    input = input.replace("FabButton():\n" + text, '');
+    input = input.replace("----", '');
+
+    let fabButtonHTML = '';
+
+    fabButtonHTML += `
+        <div class="fab-button animate bottom-right dropdown">
+            <a href="#" class="fab" data-bs-toggle="dropdown">
+                <ion-icon name="add-outline"></ion-icon>
+            </a>
+            <div class="dropdown-menu">
+    `;
+
+    for (let i = 0; i < blocks.length; i++, id++) {
+        const block = blocks[i];
+
+        if (/^::(.+)/.test(block)) {
+            let positionMatches = block.match(/^::(.+)/);
+            let position = positionMatches[1].trim().toLowerCase();
+
+            if (['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center'].includes(position)) {
+                fabButtonHTML = fabButtonHTML.replace('bottom-right', position);
+            }
+            
+        }
+
+        if (/^\[([^\]]+)\/([^\]]+)\]\(([^)]+)\)/.test(block)) {
+            let matches = block.match(/^\[([^\]]+)\/([^\]]+)\]\(([^)]+)\)/);
+            let buttonText = matches[1];
+            let buttonIcon = matches[2];
+            let buttonLink = matches[3];
+
+            fabButtonHTML += `
+                <a class="dropdown-item" href="${buttonLink}">
+                    <ion-icon name="${buttonIcon}"></ion-icon>
+                    <p>${buttonText}</p>
+                </a>
+            `;
+        }
+    }
+
+    fabButtonHTML += `
+            </div>
+        </div>
+    `;
+
+    return fabButtonHTML;
+}
+
+function formGenerator(text) {
+    blocks = text.split('\n').filter(block => block !== '');
+    input = input.replace("Form():\n" + text, '');
+    input = input.replace("----", '');
+
+    let formHTML = '';
+
+    formHTML += `
+        <div class="section full mt-2 mb-2">
+            <div class="section-title">Form Example</div>
+            <div class="wide-block pt-2 pb-3">
+
+                <form class="needs-validation" novalidate>
+    `;
+
+    for (let i = 0; i < blocks.length; i++, id++) {
+        const block = blocks[i];
+
+        if (/^::/.test(block)) {
+            let labelName = block.replace(/^::/, '');
+            formHTML += `
+                <div class="form-group basic">
+                    <div class="input-wrapper">
+                        <label class="label" for="input${id}">${labelName}</label>
+                        <input type="text" class="form-control" id="input${id}" placeholder="Enter your ${labelName.toLowerCase()}" required>
+                    </div>
+                </div>
+            `;
+
+        } else if (/\[(.*?)\]\((.*?)\)/.test(block)) {
+            let matches = block.match(/\[(.*?)\]\((.*?)\)/);
+            let buttonText = matches[1];
+            let buttonUrl = matches[2];
+
+            buttonText = formatText(buttonText);
+
+            formHTML += `
+                <button class="btn btn-primary btn-block" type="submit" formaction="${buttonUrl}">${buttonText}</button>
+            `;
+
+        }
+    }
+
+    formHTML += `
+                </form>
+            </div>
+        </div>
+    `;
+
+    return formHTML;
 }
 
 function formatText(text) {
