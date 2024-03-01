@@ -359,47 +359,28 @@ function darkAlert(text) {
 
 /*ButtonMenu*/
 function bottomMenu(text) {
-    let menuHTML = `
-    <div class="section full mt-2">
-            <div class="appBottomMenu">
-                <a href="#" class="item">
-                    <div class="col">
-                        <ion-icon name="file-tray-full-outline"></ion-icon>
-                        <strong>Today</strong>
-                    </div>
-                </a>
-                <a href="#" class="item active">
-                    <div class="col">
-                        <ion-icon name="calendar-outline"></ion-icon>
-                        <strong>Calendar</strong>
-                    </div>
-                </a>
-                <a href="#" class="item">
-                    <div class="col">
-                        <ion-icon name="archive-outline"></ion-icon>
-                        <strong>Inbox</strong>
-                    </div>
-                </a>
-                <a href="#" class="item">
-                    <div class="col">
-                        <ion-icon name="document-text-outline"></ion-icon>
-                        <strong>Docs</strong>
-                    </div>
-                </a>
-                <a href="#" class="item">
-                    <div class="col">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <strong>Profile</strong>
-                    </div>
-                </a>
-            </div>
-            <!-- * App Bottom Menu -->
-        </div>
-        `
+    const lines = text.trim().split('\n');
+    const items = lines.map(line => {
+        const parts = line.split(',').map(part => part.trim());
+        return { text: parts[0], href: parts[1], icon: parts[2] };
+    });
+
+    let menuHTML = `<div class="section full mt-2"><div class="appBottomMenu">`;
+
+    items.forEach(item => {
+        menuHTML += `
+            <a href="${item.href}" class="item">
+                <div class="col">
+                    <ion-icon name="${item.icon}"></ion-icon>
+                    <strong>${item.text}</strong>
+                </div>
+            </a>
+        `;
+    });
+
+    menuHTML += `</div></div>`;
     return menuHTML;
 }
-
-
 /**/
 
 

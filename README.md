@@ -51,5 +51,11 @@ LightAlert():
 DarkAlert():
 **Alerta por defecto:** Un simple mensaje de alerta que se muestra en la página.
 ----
-
+BottomMenu():
+Home, #home, home
+Profile, #profile, person-circle-outline
+Settings, #settings, settings
+Calendar, #calendar, calendar-outline
 ```
+
+Ionicons compatible con 7.1.0: https://ionic.io/ionicons

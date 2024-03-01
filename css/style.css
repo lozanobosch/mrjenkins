@@ -2,6 +2,26 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+a.item {
+  text-decoration: none;
+}
+.appBottomMenu {
+  display: flex; /* Habilita flexbox */
+  flex-direction: row; /* Asegura que los hijos estén en fila */
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.appBottomMenu .item {
+  text-decoration: none;
+  margin-right: 0.5rem; /* Añade un margen a la derecha de cada elemento, ajusta según tus necesidades */
+}
+
+/* Asegúrate de quitar el margen derecho al último elemento */
+.appBottomMenu .item:last-child {
+  margin-right: 0; /* Elimina el margen derecho del último elemento */
+}
+
 p {
   font-weight: 300;
   color: #4b4b4b;
@@ -85,30 +105,6 @@ table td {
   display: table-cell;
 }
 
-/* Medium screens: Display 4 columns */
-@media screen and (max-width: 1024px) {
-  table th:nth-child(n + 5),
-  table td:nth-child(n + 5) {
-    display: none;
-  }
-}
-
-/* Small screens: Display 2 columns */
-@media screen and (max-width: 768px) {
-  table th:nth-child(n + 3),
-  table td:nth-child(n + 3) {
-    display: none;
-  }
-}
-
-/* Extra Small screens: Display 1 column */
-@media screen and (max-width: 480px) {
-  table th:nth-child(n + 2),
-  table td:nth-child(n + 2) {
-    display: none;
-  }
-}
-
 /* Style for table headers and cells */
 th,
 td {
@@ -134,41 +130,42 @@ tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
 }
 alert-primary .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-primary .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-primary {
   background: transparent;
-  color: #1E74FD;
-  border: 1px solid #1E74FD;
+  color: #1e74fd;
+  border: 1px solid #1e74fd;
 }
 
 .alert-outline-primary a {
-  color: #1E74FD !important;
+  color: #1e74fd !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-primary .alert-title {
-  color: #1E74FD;
+  color: #1e74fd;
 }
 
 .alert-outline-primary .btn-close {
-  color: #1E74FD;
+  color: #1e74fd;
   opacity: 1;
 }
 
-.alert-outline-primary .btn-close:before, .alert-outline-primary .btn-close:after {
-  background: #1E74FD;
+.alert-outline-primary .btn-close:before,
+.alert-outline-primary .btn-close:after {
+  background: #1e74fd;
 }
 
 .alert-secondary {
-  background: #6C7C94;
+  background: #6c7c94;
   color: #fff;
-  border: 1px solid #6C7C94;
+  border: 1px solid #6c7c94;
 }
 
 .alert-secondary a {
@@ -177,41 +174,42 @@ alert-primary .alert-title {
 }
 
 .alert-secondary .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-secondary .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-secondary {
   background: transparent;
-  color: #6C7C94;
-  border: 1px solid #6C7C94;
+  color: #6c7c94;
+  border: 1px solid #6c7c94;
 }
 
 .alert-outline-secondary a {
-  color: #6C7C94 !important;
+  color: #6c7c94 !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-secondary .alert-title {
-  color: #6C7C94;
+  color: #6c7c94;
 }
 
 .alert-outline-secondary .btn-close {
-  color: #6C7C94;
+  color: #6c7c94;
   opacity: 1;
 }
 
-.alert-outline-secondary .btn-close:before, .alert-outline-secondary .btn-close:after {
-  background: #6C7C94;
+.alert-outline-secondary .btn-close:before,
+.alert-outline-secondary .btn-close:after {
+  background: #6c7c94;
 }
 
 .alert-success {
-  background: #34C759;
+  background: #34c759;
   color: #fff;
-  border: 1px solid #34C759;
+  border: 1px solid #34c759;
 }
 
 .alert-success a {
@@ -220,41 +218,42 @@ alert-primary .alert-title {
 }
 
 .alert-success .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-success .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-success {
   background: transparent;
-  color: #34C759;
-  border: 1px solid #34C759;
+  color: #34c759;
+  border: 1px solid #34c759;
 }
 
 .alert-outline-success a {
-  color: #34C759 !important;
+  color: #34c759 !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-success .alert-title {
-  color: #34C759;
+  color: #34c759;
 }
 
 .alert-outline-success .btn-close {
-  color: #34C759;
+  color: #34c759;
   opacity: 1;
 }
 
-.alert-outline-success .btn-close:before, .alert-outline-success .btn-close:after {
-  background: #34C759;
+.alert-outline-success .btn-close:before,
+.alert-outline-success .btn-close:after {
+  background: #34c759;
 }
 
 .alert-danger {
-  background: #EC4433;
+  background: #ec4433;
   color: #fff;
-  border: 1px solid #EC4433;
+  border: 1px solid #ec4433;
 }
 
 .alert-danger a {
@@ -263,41 +262,42 @@ alert-primary .alert-title {
 }
 
 .alert-danger .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-danger .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-danger {
   background: transparent;
-  color: #EC4433;
-  border: 1px solid #EC4433;
+  color: #ec4433;
+  border: 1px solid #ec4433;
 }
 
 .alert-outline-danger a {
-  color: #EC4433 !important;
+  color: #ec4433 !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-danger .alert-title {
-  color: #EC4433;
+  color: #ec4433;
 }
 
 .alert-outline-danger .btn-close {
-  color: #EC4433;
+  color: #ec4433;
   opacity: 1;
 }
 
-.alert-outline-danger .btn-close:before, .alert-outline-danger .btn-close:after {
-  background: #EC4433;
+.alert-outline-danger .btn-close:before,
+.alert-outline-danger .btn-close:after {
+  background: #ec4433;
 }
 
 .alert-warning {
-  background: #FE9500;
+  background: #fe9500;
   color: #fff;
-  border: 1px solid #FE9500;
+  border: 1px solid #fe9500;
 }
 
 .alert-warning a {
@@ -306,41 +306,42 @@ alert-primary .alert-title {
 }
 
 .alert-warning .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-warning .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-warning {
   background: transparent;
-  color: #FE9500;
-  border: 1px solid #FE9500;
+  color: #fe9500;
+  border: 1px solid #fe9500;
 }
 
 .alert-outline-warning a {
-  color: #FE9500 !important;
+  color: #fe9500 !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-warning .alert-title {
-  color: #FE9500;
+  color: #fe9500;
 }
 
 .alert-outline-warning .btn-close {
-  color: #FE9500;
+  color: #fe9500;
   opacity: 1;
 }
 
-.alert-outline-warning .btn-close:before, .alert-outline-warning .btn-close:after {
-  background: #FE9500;
+.alert-outline-warning .btn-close:before,
+.alert-outline-warning .btn-close:after {
+  background: #fe9500;
 }
 
 .alert-info {
-  background: #592BCA;
+  background: #592bca;
   color: #fff;
-  border: 1px solid #592BCA;
+  border: 1px solid #592bca;
 }
 
 .alert-info a {
@@ -349,49 +350,50 @@ alert-primary .alert-title {
 }
 
 .alert-info .alert-title {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-info .close {
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-outline-info {
   background: transparent;
-  color: #592BCA;
-  border: 1px solid #592BCA;
+  color: #592bca;
+  border: 1px solid #592bca;
 }
 
 .alert-outline-info a {
-  color: #592BCA !important;
+  color: #592bca !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-info .alert-title {
-  color: #592BCA;
+  color: #592bca;
 }
 
 .alert-outline-info .btn-close {
-  color: #592BCA;
+  color: #592bca;
   opacity: 1;
 }
 
-.alert-outline-info .btn-close:before, .alert-outline-info .btn-close:after {
-  background: #592BCA;
+.alert-outline-info .btn-close:before,
+.alert-outline-info .btn-close:after {
+  background: #592bca;
 }
 
 .alert-light {
-  background: #FFF;
+  background: #fff;
   color: #141515;
 }
 
 .alert-dark {
   background: #333;
-  color: #FFF;
+  color: #fff;
 }
 
 .alert-dark a {
-  color: #FFF !important;
+  color: #fff !important;
   text-decoration: underline !important;
 }
 
@@ -401,3 +403,26 @@ alert-primary .alert-title {
   border: 1px solid #333;
 }
 
+/* Medium screens: Display 4 columns */
+@media screen and (max-width: 1024px) {
+  table th:nth-child(n + 5),
+  table td:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+/* Small screens: Display 2 columns */
+@media screen and (max-width: 768px) {
+  table th:nth-child(n + 3),
+  table td:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* Extra Small screens: Display 1 column */
+@media screen and (max-width: 480px) {
+  table th:nth-child(n + 2),
+  table td:nth-child(n + 2) {
+    display: none;
+  }
+}
