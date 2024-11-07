@@ -1,5 +1,6 @@
 var container = "";
 let id = 0;
+let ck=0;
 
 function selectFunction(text) {
 
